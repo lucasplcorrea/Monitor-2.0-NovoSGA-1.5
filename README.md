@@ -1,5 +1,8 @@
 # Monitor 2.0 - NovoSGA 1.5
 
+Esse projeto é uma extensão para utilizar em conjunto com o [NovoSGA](https://github.com/novosga/novosga)
+
+
 Monitor para melhor visualização das senhas aguardando atendimento.
 
 Incluí algumas funcionalidades adicionais que não existem no monitor antigo.
