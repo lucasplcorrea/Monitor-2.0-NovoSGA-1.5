@@ -16,20 +16,24 @@ Faça os ajustes necessários nos seguintes arquivos:
 
 sga/templates/home.html.twig 
 Linha 25
+```
 <li>
   <a href="http://caminhodoseuservidor/nomedapastaaondedescompactou/monitor.php">
   <img src="http://caminhodoseuservidor/caminhodapastadosga/public/modules/sga.monitor/resources/images/icon.png?v=1.5.0">
   <span class="name">Monitor 3.0</span>
   </a>
 </li>
+```
 
 monitor.php
 Alterar dados de conexão com o MySQL
 
 linha 5
+```
 <link rel="shortcut icon" href="http://caminhodoseuservidor/sga/public/images/favicon.png" type="image/x-icon" />
-
+```
 linha 12
+```
 <!-- NavBar para voltar ao SGA -->
 <nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand" href="http://caminhodoseuservidor/sga/public">
@@ -37,14 +41,14 @@ linha 12
     Voltar ao Início
   </a>
 </nav>
-
+```
 atendimentos.php
 Alterar dados de conexão com o MySQL
 
 Criação da View
 
 Versão continua
-
+```
 CREATE OR REPLACE VIEW view_historico_atendimentos_completo AS
 SELECT
     CONCAT(ha.sigla_senha, LPAD(ha.num_senha, 3, '0')) AS numero,
@@ -66,10 +70,10 @@ JOIN
     servicos s ON ha.servico_id = s.id
 JOIN
     usuarios u ON ha.usuario_id = u.id;
-
+```
 
 Versão incremental por serviço
-
+```
 CREATE OR REPLACE VIEW view_historico_atendimentos_completo AS
 SELECT
     CONCAT(ha.sigla_senha, LPAD(ha.num_senha_serv, 3, '0')) AS numero,
@@ -91,3 +95,4 @@ JOIN
     servicos s ON ha.servico_id = s.id
 JOIN
     usuarios u ON ha.usuario_id = u.id;
+```
