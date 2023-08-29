@@ -1,0 +1,149 @@
+/* Definições gerais */
+
+body {
+  background-color: #444654;
+  color: #FFFFFF;
+  margin: 0 20px;
+}
+
+header {
+  background-color: #444654;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Estilos das senhas */
+
+.senhas {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.senha {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid #f8f9fa;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.prioridade-1 {
+  color: rgb(255, 255, 255);
+}
+
+.prioridade-not-1 {
+  color: red;
+}
+
+@keyframes blink-prioridade-1 {
+  50% {
+    background-color: #f48585;
+  }
+}
+
+@keyframes blink-prioridade-not-1 {
+  50% {
+    background-color: #f48585;
+  }
+}
+
+.piscar-prioridade-1 {
+  animation: blink-prioridade-1 1s infinite;
+}
+
+.piscar-prioridade-not-1 {
+  animation: blink-prioridade-not-1 2s infinite;
+}
+
+/* Estilos do modal */
+
+.modal {
+  background-color: #35364110; /* Cor de fundo do campo das informações */
+}
+
+.modal-content {
+  color: white; /* Cor do texto das letras dentro do modal */
+  background-color: #353641; /* Cor de fundo do modal */
+  border-radius: 10px;
+}
+
+.modal-body {
+  padding: 20px; /* Adiciona um espaçamento interno */
+}
+
+.modal-header {
+  background-color: #19c37d;
+  color: white;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.modal-footer {
+  background-color: #19c37d;
+  color: #35364117;
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.btn {
+  background-color: #19c37d;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #85dfb9;
+}
+
+/* Estilo para o container dos serviços */
+.servicos {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+/* Estilo para o container do serviço */
+.servico {
+  flex: 0 0 calc(33.33% - 20px); /* Três colunas */
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #525050;
+}
+
+/* Estilo de intercalação de cores nas linhas */
+.table-bordered tbody tr:nth-of-type(even) {
+  background-color: #838080;
+}
+
+.table-bordered tbody tr:nth-of-type(odd) {
+  background-color: #525050;
+}
+
+/* Centralizar textos na tabela */
+.table-bordered td, .table-bordered th {
+  text-align: center;
+}
+
+/* Destaque a linha ao passar o mouse */
+.table-bordered tbody tr:hover {
+  background-color: #85dfb9;
+}
+
+/* Ajustar o tamanho do modal de consulta de senhas concluídas */
+#modalConsultaAtendimentos .modal-dialog {
+  max-width: 1270px;
+  width: 100%;
+  margin: auto;
+}
