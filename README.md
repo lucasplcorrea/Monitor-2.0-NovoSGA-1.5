@@ -99,3 +99,12 @@ JOIN
 JOIN
     usuarios u ON ha.usuario_id = u.id;
 ```
+
+## Algumas imagens do projeto
+
+![](Imagens/Screenshot1.png)
+![](Imagens/Screenshot2.png)
+![](Imagens/Screenshot4.png)
+![](Imagens/Screenshot5.png)
+![](Imagens/Screenshot6.png)
+![](Imagens/Screenshot7.png)
