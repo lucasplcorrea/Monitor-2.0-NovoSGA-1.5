@@ -1,9 +1,9 @@
 <?php
 // Conexão com o banco de dados (substitua pelas suas configurações)
-$host = '192.168.160.5';
-$user = 'novosga';
-$password = '123novosga456';
-$dbname = 'novosga';
+$host = "192.168.160.93";
+$user = "visualizadorsga";
+$password = "@Cartorio!531";
+$dbname = "SGA";
 
 // Cria a conexão com o banco de dados
 $conn = new mysqli($host, $user, $password, $dbname);
@@ -24,7 +24,7 @@ $data = $_POST["data"];
 error_log("Parâmetros recebidos - Senha: $senha, Data: $data");
 
 // Inicializa a consulta
-$query = "SELECT * FROM view_historico_atendimentos_completo WHERE 1 = 1 LIMIT 500";
+$query = "SELECT * FROM view_historico_atendimentos_completo WHERE 1 = 1";
 
 // Verifica se a senha foi preenchida
 if (!empty($senha)) {
@@ -35,6 +35,8 @@ if (!empty($senha)) {
 if (!empty($data) && $data != "undefined/undefined/") {
     $query .= " AND data_de_chegada = '$data'";
 }
+
+$query .= " LIMIT 500"; // Coloca o LIMIT no lugar correto
 
 // Log da consulta que será executada
 error_log("Consulta: $query");
