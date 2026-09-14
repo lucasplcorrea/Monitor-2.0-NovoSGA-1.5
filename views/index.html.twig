@@ -1,0 +1,78 @@
+{% extends "module.html.twig" %}
+
+{% block head %}
+    {{ parent() }}
+    {# Novo SGA 1.5 otherwise fixes the cache key at its own version (1.5.2). #}
+    <link rel="stylesheet" type="text/css" href="{{ resources('css/style.css', module.chave, '0.2.2') }}" />
+{% endblock %}
+
+{% block moduleContent %}
+{% autoescape true %}
+<div id="monitor2" data-unidade="{{ unidade.id }}" data-usuario="{{ usuario.id }}" data-unidade-nome="{{ unidade.nome }}">
+    <header class="m2-toolbar">
+        <span class="text-muted">Unidade: <strong>{{ unidade.nome }}</strong></span>
+        <div class="m2-actions"><button type="button" class="btn btn-default" data-toggle="collapse" data-target="#m2-settings" aria-expanded="false" aria-controls="m2-settings"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Alertas</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#m2-history">Consultar histórico</button></div>
+    </header>
+    <div id="m2-settings" class="collapse">
+        <div class="well well-sm">
+            <form id="m2-settings-form" class="form-inline">
+                <div class="form-group"><label for="m2-minutes">Piscar após</label> <input id="m2-minutes" class="form-control input-sm" type="number" min="1" max="1440" step="1" value="5" required> <span>minutos de espera</span></div>
+                <button type="submit" class="btn btn-default btn-sm">Salvar</button>
+                <button id="m2-notifications" type="button" class="btn btn-default btn-sm">Ativar notificações</button>
+            </form>
+            <p class="help-block">Preferências deste navegador, para seu usuário nesta unidade. Notificações enquanto o módulo estiver aberto, inclusive em segundo plano.</p>
+            <p id="m2-settings-status" role="status" aria-live="polite"></p>
+        </div>
+    </div>
+    <p class="m2-legend"><span class="m2-priority-key">● Prioridade</span> <span class="m2-alert-key">● Espera acima de <span id="m2-threshold">5</span> min</span></p>
+    <p id="m2-status" role="status" aria-live="polite">Carregando atendimentos…</p>
+    <div id="m2-queues">
+        {% for estado, titulo in {1: 'Aguardando atendimento', 2: 'Chamadas pela mesa', 3: 'Em atendimento'} %}
+        <section class="m2-state" data-estado="{{ estado }}">
+            <h3>{{ titulo }} <span class="m2-count">0</span></h3>
+            <p class="m2-empty">Nenhuma senha neste estado.</p>
+            <div class="m2-services"></div>
+        </section>
+        {% endfor %}
+    </div>
+    <div id="m2-detail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="m2-detail-title">
+        <div class="modal-dialog" role="document"><div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">&times;</button>
+                <h4 class="modal-title" id="m2-detail-title">Detalhes da senha</h4>
+            </div>
+            <div class="modal-body"><p class="m2-message" role="status"></p><dl class="dl-horizontal"></dl></div>
+            <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button></div>
+        </div></div>
+    </div>
+    <div id="m2-history" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="m2-history-title">
+        <div class="modal-dialog modal-lg" role="document"><div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">&times;</button>
+                <h4 class="modal-title" id="m2-history-title">Histórico de atendimentos</h4>
+            </div>
+            <div class="modal-body">
+                <form id="m2-history-form">
+                    <div class="row">
+                        <div class="col-sm-5 form-group"><label for="m2-number">Senha</label><input id="m2-number" name="senha" class="form-control" maxlength="11" placeholder="A001 ou 001" autocomplete="off"></div>
+                        <div class="col-sm-5 form-group"><label for="m2-date">Data de chegada</label><input id="m2-date" name="data" type="date" class="form-control"></div>
+                        <div class="col-sm-2 form-group"><button class="btn btn-primary m2-search" type="submit">Consultar</button></div>
+                    </div>
+                </form>
+                <p>Informe a senha, a data ou ambos. Até 500 registros arquivados pelo SGA.</p>
+                <p id="m2-history-status" role="status" aria-live="polite"></p>
+                <div class="table-responsive"><table class="table table-bordered">
+                    <caption class="sr-only">Resultado da consulta histórica</caption>
+                    <thead><tr><th>Senha</th><th>Serviço</th><th>Situação</th><th>Prioridade</th><th>Chegada</th><th>Chamada</th><th>Início</th><th>Fim</th><th>Espera</th><th>Duração</th><th>Permanência</th><th>Responsável</th></tr></thead>
+                    <tbody id="m2-history-rows"></tbody>
+                </table></div>
+            </div>
+            <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button></div>
+        </div></div>
+    </div>
+</div>
+{% endautoescape %}
+{# Load after the markup so this version initializes before a stale head script. #}
+<script type="text/javascript" src="{{ resources('js/script.js', module.chave, '0.2.2') }}"></script>
+{% endblock %}

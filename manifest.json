@@ -1,0 +1,12 @@
+{
+    "type": 0,
+    "name": "Gestão de Filas",
+    "description": "Acompanhe o movimento e os tempos de espera do seu setor",
+    "version": "0.2.2",
+    "homepage": "https://github.com/lucasplcorrea/Monitor-2.0-NovoSGA-1.5",
+    "authors": [
+        {
+            "name": "Lucas Pedro Correa"
+        }
+    ]
+}
